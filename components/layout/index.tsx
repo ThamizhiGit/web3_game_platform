@@ -9,6 +9,7 @@ import InviteDialog from '../dialog/InviteDialog';
 import { createConfig, WagmiConfig } from 'wagmi';
 import RoadmapDialog from '../dialog/RoadmapDialog';
 import GamerEmailDialog from '../dialog/GamerEmailDialog';
+import TransactionStatus from '../web3/TransactionStatus';
 import {
   bitKeepConnector,
   metaMaskConnector,
@@ -41,6 +42,7 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
           <InviteDialog />
           <RoadmapDialog />
           <GamerEmailDialog />
+          <TransactionStatus />
           <ToastContainer theme="dark" toastClassName="toast-container" icon={<ToastIcon />} autoClose={3000} hideProgressBar />
           {process.env.NODE_ENV === 'production' && <ButterflyGL />}
         </div>

@@ -2,16 +2,19 @@ import ActivityTab from '@/components/dashboard/ActivityTab';
 import Arcana from '@/components/dashboard/Arcana';
 import Developer from '@/components/dashboard/Developer';
 import Gamer from '@/components/dashboard/Gamer';
+import WalletDashboard from '@/components/dashboard/WalletDashboard';
 import SteamDeveloperSBT from '@/components/dashboard/sbt/SteamDeveloperSBT';
 import SteamGamerSBT from '@/components/dashboard/sbt/SteamGamerSBT';
 import { usePageTabSelected } from '@/hooks/dashboard/usePageTabSelected';
 import { userPowerLevelAtom } from '@/store/dashboard/state';
 import { digitalFormat } from '@/utils/format';
 import { useRecoilValue } from 'recoil';
+import { useAccount } from 'wagmi';
 
 export default function Dashboard() {
   const { arcanaPL, steamGamerPL, steamDeveloperPL } = useRecoilValue(userPowerLevelAtom);
   const { index, onSelect } = usePageTabSelected();
+  const { isConnected } = useAccount();
 
   return (
     <div className="mt-4">
@@ -61,6 +64,9 @@ export default function Dashboard() {
       <div>{index === 0 && <Arcana />}</div>
       <div>{index === 1 && <Gamer />}</div>
       <div>{index === 2 && <Developer />}</div>
+      
+      {/* Wallet Dashboard - shows for all connected users */}
+      {isConnected && <WalletDashboard />}
     </div>
   );
 }

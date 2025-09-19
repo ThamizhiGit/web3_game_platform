@@ -14,3 +14,20 @@ export const isBABTHolderAtom = atom<boolean>({
   key: 'is_babt_holder',
   default: false,
 });
+
+export interface TokenBalanceData {
+  value: bigint;
+  formatted: string;
+  symbol: string;
+  decimals: number;
+}
+
+export const tokenBalanceAtom = atom<Record<string, TokenBalanceData>>({
+  key: 'token_balance',
+  default: {},
+});
+
+export const pendingTransactionsAtom = atom<string[]>({
+  key: 'pending_transactions',
+  default: [],
+});

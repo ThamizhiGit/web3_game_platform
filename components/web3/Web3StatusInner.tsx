@@ -10,6 +10,7 @@ import { useBABTBalanceOf } from '@/hooks/useContract';
 import { gamerEmailInfoAtom } from '@/store/gamer/state';
 import Popover from '../popover';
 import { useLogoutCallback } from '@/hooks/user';
+import TokenBalance from './TokenBalance';
 
 function Web3StatusInner() {
   const { address, connector } = useAccount();
@@ -34,8 +35,19 @@ function Web3StatusInner() {
         className="z-40 border-none bg-transparent"
         render={() => (
           <div className="flex items-start gap-3">
-            <div className="backdrop-box flex flex-col gap-3 rounded-lg p-3">
-              <p>{gamerEmailInfo.email}</p>
+            <div className="backdrop-box flex flex-col gap-3 rounded-lg p-3 min-w-[200px]">
+              <p className="text-sm text-gray-300">{gamerEmailInfo.email}</p>
+              
+              {/* Token Balance Display */}
+              <div className="border-t border-gray-600 pt-3">
+                <p className="text-xs text-gray-400 mb-2">Balance</p>
+                <TokenBalance 
+                  showRefreshButton={true}
+                  precision={4}
+                  className="text-white"
+                />
+              </div>
+              
               <div
                 className="flex-center cursor-pointer rounded-lg p-2.5 hover:bg-white/[0.12] hover:backdrop-blur-lg"
                 onClick={logout}
